@@ -18,6 +18,12 @@ public class Fibonacci {
             return diguiFibo(n-1) + diguiFibo(n-2);
         }
     }
+    public static int beiwangluFibo(int n){
+        if(n < 1)
+            return 0;
+        return 0;
+    }
+
     public static int sum_diguiFibo(int n){
         int sum = 0;
         for(int i=1;i<=n;i++) {

@@ -20,7 +20,6 @@ public class A_Lian_Biao {
             System.out.print(listNode.val + "->");
             listNode = listNode.next;
         }
-
     }
 
     // 1、两数相加，给定两个非空链表表示两个非负整数，位数按照逆序方式存储，将两数相加，返回一个新的链表

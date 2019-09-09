@@ -24,7 +24,6 @@ public class Main {
 		for (Map.Entry<String, String> entry : hm.entrySet()){
 			System.out.println(entry.getKey() + entry.getValue());
 		}
-
 	}
 
 }

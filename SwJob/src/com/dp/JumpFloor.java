@@ -1,10 +1,18 @@
 package com.dp;
 
+import java.util.HashMap;
+
 public class JumpFloor {
+    static HashMap<Integer, Integer> hm = new HashMap<>();
     public static void main(String[] args) {
         System.out.println(jumpFloor(10));
-        System.out.println(jumpFloorDP(10));
+        HashMap<Integer, Integer> map = new HashMap<>();
+        System.out.println(jumpFloorBei(10));
+        System.out.println(jumpFloorDP1(10));
     }
+    // 【最优子结构】：F(10) = F(9) + F(8)，F(9)和F(8)是F(10)的【最优子结构】
+    // 【边界】：F(1) 和 F(2)是问题的边界
+    // 【状态转移方程】：F(n) = F(n-1) + F(n-2)
     // 递归实现
     public static int jumpFloor(int n)
     {
@@ -14,18 +22,37 @@ public class JumpFloor {
             return n;
         return jumpFloor(n-1) + jumpFloor(n-2);
     }
-    // 动态规划实现
-    public static int jumpFloorDP(int n){
+
+    // 递归方式会重复计算很多次，备忘录将重复计算的结果暂存
+    public static int jumpFloorBei(int n){
         if(n <= 0)
             return 0;
-        int f = 1;
-        int g = 1;
-        while(n-- != 0)
-        {
-            g = g + f;
-            f = g - f;
+        if(n <= 2)
+            return n;
+        if(hm.containsKey(n))
+            return hm.get(n);
+        else {
+            int value = jumpFloorBei(n-1) + jumpFloorBei(n-2);
+            hm.put(n, value);
+            return value;
         }
-        return f;
+    }
+
+    // 动态规划实现
+    public static int jumpFloorDP1(int n){
+        if(n <= 0)
+            return 0;
+        if(n <= 2)
+            return n;
+        int a = 1;
+        int b = 2;
+        int temp = 0;
+        for(int i = 3; i <= n; i++){
+            temp = a + b;
+            a = b;
+            b = temp;
+        }
+        return temp;
     }
     //题目：一个台阶总共有n级，如果一次可以跳1级，也可以跳2级......它也可以跳上n级。
     // 此时该青蛙跳上一个n级的台阶总共有多少种跳法？
