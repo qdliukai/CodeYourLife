@@ -68,8 +68,8 @@ public class Pre_In_2_Post {
     }
 
     public static void main(String[] args) {
-        String pre = "D E A";
-        String in = "E D A";
+        String pre = "A D C E F G I H B";
+        String in = "C D F E I G H A B";
         Object[] preOrder = pre.split(" ");
         Object[] inOrder = in.split(" ");
         Pre_In_2_Post biTree = new Pre_In_2_Post();
